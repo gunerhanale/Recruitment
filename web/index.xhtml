@@ -17,19 +17,17 @@
                         <div class="ui-g ui-fluid" >
                             <div class="ui-g-5">
                                 <h:outputText class="" value="Username"/>
-                               
                             </div>
                             <div class="ui-g-7">
-                                <p:inputText value="#{loginBean.record.kullaniciAdi}" placeholder="Enter username" required="true" requiredMessage="Please enter your username!"/>
+                                <p:inputText value="#{loginBean.record.userName}" placeholder="Enter username" required="true" requiredMessage="Please enter your username!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-5">
                                 <h:outputText value="Password" />
-                               
                             </div>
                             <div class="ui-g-7">
-                                <p:password value="#{loginBean.record.kullaniciSifre}" placeholder="Enter password"  required="true" requiredMessage="Please enter your password!"/>
+                                <p:password value="#{loginBean.record.password}" placeholder="Enter password"  required="true" requiredMessage="Please enter your password!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid">
@@ -39,7 +37,7 @@
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-12">
-                                <p:commandButton  value="Sign up" icon="fa fa-plus" action="#{loginBean.login}" process="@form" update="globalMsg" styleClass="BigButton ui-priority-primary" />
+                                <p:commandButton  value="Sign up" icon="fa fa-plus" action="#{loginBean.signUp}" process="@form" styleClass="BigButton ui-priority-primary" />
                             </div>
                         </div>
 

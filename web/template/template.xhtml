@@ -74,42 +74,64 @@
         <!-- PC CONTENT STARTS HERE-->
         <div class="PC">
 
-            <div id="MENUSIDE">
+            <div id="MENUSIDE" >
                 <div id="MENUSIDEindent">
-                    <span>
-                        <br/><br/>
-                            
-                        <center><h:graphicImage height="200px" name="main/images/asterisk-128.png" /></center> 
+                    <span id="LOGO" class="bordersOfMenuSide">
+                        <h:graphicImage name="main/images/asterisk-128.png" /> 
                     </span>
-                </div>        
+                       
+                    <ui:include src="/menu/menu.xhtml"></ui:include>
+                </div>
             </div>
 
-            <script type="text/javascript">
-                restoreMenuState();
-            </script>
+
 
             <div id="CONTENTSIDE">
                 <ui:insert name="messageHandler">
                     <h:form id="globalMsg" >
-                        <p:dialog widgetVar="globalMsgDialog" modal="true" minWidth="200" visible="#{not empty facesContext.messageList}" header="Notice" >
+                        <p:dialog widgetVar="globalMsgDialog" modal="true" resizable="false" visible="#{not empty facesContext.messageList}" header="UYARI" >
                             <h:messages id="messages" showDetail="true"  />
                             <p:commandButton  value="Tamam"  onclick="PF('globalMsgDialog').hide();"></p:commandButton>
                         </p:dialog>                            
                     </h:form>
-
+                    <h:form>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" header="Onay">
+                            <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>                         
+                    </h:form>    
 
 
                 </ui:insert>                       
                 <div id="CONTENTSIDEindent">
 
                     <div class="ContentSideSections" id="PFTopLinksCover">
-                        <a id="LOGOTEXTSIDE" href="#{request.contextPath}/index.xhtml">
+                        <a id="LOGOTEXTSIDE" href="#{request.contextPath}/public/home.xhtml">
                             <span class="dispBlock logoDarkText fontSize30">Recruitment</span>
-                            <span class="dispBlock logoBlueText fontSize28 regularFont">Corporation Apps</span>
+                            <span class="dispBlock logoBlueText fontSize28 regularFont">Corporations Apps</span>
                         </a>
-  
-                    </div>                        
-                
+
+                        <span class="PFTopLinks floatRight boldFont cursorPointer" style="align-content: center;min-width: 200px" id="pushNav" title="#{user.userName}">
+                            <h:graphicImage name="main/images/monitor-128.png" style="max-width: 60px;"/> <br/>
+                            <span >#{user.fullName}</span>
+                            <br/>
+                            <span class="PFGrayText">#{user.emailOrPhone}</span>
+                            <div id="PushDemos" class="navOverlay">
+
+                                <a href="#{request.contextPath}/index.xhtml"><i class="fa fa-unlock"/><span class="ui-text"> Giriş</span></a>                             
+                                <a href="#{request.contextPath}/public/home.xhtml"><i class="fa fa-home"/><span class="ui-text">Ana Sayfa</span></a>
+                                <a href="#{request.contextPath}/secure/kullanici_yonetim/kullaniciProfil.xhtml"><i class="fa fa-user"/><span class="ui-text">Profil</span></a>
+                                <a href="#{request.contextPath}/secure/logout.xhtml"><i class="fa fa-lock"/><span class="ui-text">Çıkış</span></a>
+                                
+                            </div>
+                        </span>
+                       
+                        <a id="mobile-menu-btn" href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                      
+                    </div>   
+                   
                     <!-- header bar end-->
 
                     <div class="content-container">
@@ -140,6 +162,7 @@
                     </div>
 
                     <!-- footer start-->
+                    <!-- footer start-->
                     <div class="ContentSideSections">
                         <span class="floatLeft fontSize14 gray"><a href="http://localhost:8084/Recruitment">By Ebubekir Gunerhanal</a></span>
                         
@@ -153,7 +176,6 @@
         </div>
         <!-- PC CONTENT END-->
 
-
         <ui:insert name="exceptionHandler">
             <p:ajaxExceptionHandler type="java.lang.Throwable" update="exceptionDialog"  onexception="PF('exceptionDialog').show();" />
 
@@ -166,6 +188,7 @@
 
             </p:dialog>
         </ui:insert>
+        
         <ui:insert name="status">
 
             <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
@@ -188,11 +211,21 @@
                 <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
             </p:dialog>                
         </ui:insert>
-
+        <ui:insert name="global">
+            <h:form id="globalForm">
+                <ui:include src="/secure/ortak/kullaniciDialog.xhtml" />
+            </h:form> 
+            <ui:include src="/public/ortak/bilgilendirme.xhtml"></ui:include>   
+            <h:form>
+                <p:poll process="@this" update="@this" listener="#{globalBean.sessionTimeOutUpdate}" interval="600"></p:poll>
+            </h:form>
+        </ui:insert>
         <ui:insert name="highlight">
             <h:outputScript name="main/js/sh.js" target="body"/>
         </ui:insert>
 
         <ui:insert name="body"></ui:insert>
-
+        <script type="text/javascript">
+            restoreMenuState();
+        </script>
     </html>

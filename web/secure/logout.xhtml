@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Çıkış ekranı
+    </ui:define>
+    <ui:define name="description">
+        Güvenli olarak oturumu sonladırır.
+    </ui:define>
+    <ui:define name="implementation">
+        <h:form id="mainForm">
+            <p:commandButton  icon="fa fa-lock" action="#{loginBean.logout}" value="Çıkış yap">
+           
+             </p:commandButton>   
+
+        </h:form>  
+    </ui:define>
+
+</ui:composition>
