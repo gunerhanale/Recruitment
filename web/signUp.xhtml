@@ -11,32 +11,33 @@
         <!-- highlight area start-->
         <div class="ContentSideSections overHidden">
             <div class="Content33 floatLeft overHidden TextShadow" style="min-width: 500px;">
-                <h:form>
+                <h:form id="mainForm">
                     <span class="defaultTopic regularFont dispTable">Create your account</span>
-                    <p:panel>
+                    <p:panel id="saveArea">
                         <div class="ui-g ui-fluid" >
                             <div class="ui-g-8">
-                                <p:inputText value="#{loginBean.record.kullaniciAdi}" placeholder="Mobile Number or Email" required="true" requiredMessage="Please enter your username!"/>
+                                <p:inputText value="#{signUpBean.record.emailOrPhone}" placeholder="Mobile Number or Email" required="true" requiredMessage="Please enter your username!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid" >
                             <div class="ui-g-8">
-                                <p:inputText value="#{loginBean.record.kullaniciAdi}" placeholder="Full Name" required="true" requiredMessage="Please enter your username!"/>
+                                <p:inputText value="#{signUpBean.record.fullName}" placeholder="Full Name" required="true" requiredMessage="Please enter your username!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid" >
                             <div class="ui-g-8">
-                                <p:inputText value="#{loginBean.record.kullaniciAdi}" placeholder="Username" required="true" requiredMessage="Please enter your username!"/>
+                                <p:inputText value="#{signUpBean.record.userName}" placeholder="Username" required="true" requiredMessage="Please enter your username!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-8">
-                                <p:password value="#{loginBean.record.kullaniciSifre}" placeholder="Password"  required="true" requiredMessage="Please enter your password!"/>
+                                <p:password value="#{signUpBean.record.password}" placeholder="Password"  required="true" requiredMessage="Please enter your password!"/>
                             </div>                            
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-8">
-                                <p:commandButton  value="Sign in" icon="fa fa-unlock" action="#{loginBean.login}" process="@form" update="globalMsg" styleClass="BigButton ui-priority-primary" />
+                                <p:commandButton  value="Sign in" icon="fa fa-unlock" styleClass="BigButton ui-priority-primary" 
+                                                  process="saveArea" update="saveArea,globalMsg" action="#{signUpBean.saveRecord()}"/>
                             </div>
                         </div>
 
