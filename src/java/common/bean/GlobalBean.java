@@ -1,0 +1,164 @@
+package common.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import common.constant.Globals;
+import common.util.CommonUtil;
+import common.util.JsfHelper;
+
+
+/**
+ *
+ * @author bekir
+ */
+@Named
+@ManagedBean(name = "globalBean")
+@ApplicationScoped
+public class GlobalBean {
+
+    private String dateTimePattern = Globals.DATE_TIME_FORMAT_SCREEN;
+    private String datePattern = Globals.DATE_FORMAT_SCREEN;
+    private String timePattern = Globals.TIME_FORMAT_SCREEN;
+    
+    private String version = Globals.VERSION;
+    private String lang = Globals.LANGUAGE;
+    private Locale locale = Globals.LOCALE;
+    private String timeZone = Globals.TIME_ZONE;
+
+    private List<SelectItem> uygulamaList;
+    private List<SelectItem> evetHayirList;
+    private List<SelectItem> printOptionList;
+    
+    private Map uygulamaMap;
+    
+    private List<SelectItem> statuList;
+    
+   
+    @PostConstruct
+    public void init() {
+
+    }
+    
+    public void sessionTimeOutUpdate(){
+        if(Globals.DEBUG){
+            System.out.println("SESSION C::" + JsfHelper.getHttpSession().getCreationTime());
+            System.out.println("SESSION M::" + JsfHelper.getHttpSession().getMaxInactiveInterval());
+            System.out.println("SESSION L::" + JsfHelper.getHttpSession().getLastAccessedTime());            
+        }
+
+        
+    }
+
+    public List<SelectItem> getEvetHayirList() {
+        
+        final String key = "evetHayirList";
+        evetHayirList = GlobalBeanData.getCacheItems(key);
+        if (CommonUtil.isEmpty(evetHayirList)) {
+            evetHayirList = new ArrayList<>();
+            evetHayirList.add(new SelectItem(1, "Evet"));
+            evetHayirList.add(new SelectItem(0, "Hayır"));
+            GlobalBeanData.setCacheItems(key, evetHayirList);
+        }
+
+        return evetHayirList;        
+    }
+
+    public void setEvetHayirList(List<SelectItem> evetHayirList) {
+        this.evetHayirList = evetHayirList;
+    }
+
+    public List<SelectItem> getPrintOptionList() {
+        final String key = "printOptionList";
+        printOptionList = GlobalBeanData.getCacheItems(key);
+        if (CommonUtil.isEmpty(printOptionList)) {
+            printOptionList = new ArrayList<>();
+            printOptionList.add(new SelectItem("PDF", "PDF"));
+            printOptionList.add(new SelectItem("DOCX", "Word"));
+            printOptionList.add(new SelectItem("RTF", "Rtf"));
+            printOptionList.add(new SelectItem("XLS", "Excel"));
+            GlobalBeanData.setCacheItems(key, printOptionList);
+        }
+
+        return printOptionList;            
+    }
+    
+    public void setPrintOptionList(List<SelectItem> printOptionList) {
+        this.printOptionList = printOptionList;
+    }
+    public void emptyAction(){
+        
+    }
+       
+    public String getDateTimePattern() {
+        return dateTimePattern;
+    }
+
+    public void setDateTimePattern(String dateTimePattern) {
+        this.dateTimePattern = dateTimePattern;
+    }
+
+    public String getDatePattern() {
+        return datePattern;
+    }
+
+    public void setDatePattern(String datePattern) {
+        this.datePattern = datePattern;
+    }
+
+    public String getTimePattern() {
+        return timePattern;
+    }
+
+    public void setTimePattern(String timePattern) {
+        this.timePattern = timePattern;
+    }
+
+    public List<SelectItem> getUygulamaList() {
+        return uygulamaList;
+    }
+
+    public void setUygulamaList(List<SelectItem> uygulamaList) {
+        this.uygulamaList = uygulamaList;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+}
