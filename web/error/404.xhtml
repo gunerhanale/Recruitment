@@ -5,19 +5,26 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/template.xhtml">
 
+    <ui:define name="head">
+        <style type="text/css">
+            .Source {
+                display: none
+            }
+        </style>
+	</ui:define>
+    
     <ui:define name="title">
-        Exit screen
+        Error
     </ui:define>
-    <ui:define name="description">
-        Safely terminates the session.
-    </ui:define>
-    <ui:define name="implementation">
-        <h:form id="mainForm">
-            <p:commandButton  icon="fa fa-lock" action="#{loginBean.logout}" value="Exit">
-           
-             </p:commandButton>   
 
-        </h:form>  
+    <ui:define name="description">
+        Page not found.
+    </ui:define>
+
+    <ui:define name="implementation">
+        <div style="text-align:center">
+            <p:graphicImage name="main/images/warning.png" />
+        </div>
     </ui:define>
 
 </ui:composition>
