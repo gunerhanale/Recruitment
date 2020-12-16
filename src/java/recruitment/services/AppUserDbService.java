@@ -66,7 +66,10 @@ public class AppUserDbService {
     }
 
     public <T> void remove(T entity) {
+        em.getTransaction().begin();
         em.remove(em.merge(entity));
+        em.getTransaction().commit();
+        em.close();
     }
   
     public BigDecimal getSequenceValue(String sequenceName) {

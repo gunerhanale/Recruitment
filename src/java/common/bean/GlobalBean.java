@@ -13,6 +13,9 @@ import javax.inject.Named;
 import common.constant.Globals;
 import common.util.CommonUtil;
 import common.util.JsfHelper;
+import recruitment.converters.CountryPhoneCodeToSelectItemConverter;
+import recruitment.entitites.PhoneCountryCode;
+import recruitment.services.RecruitmentDbService;
 
 
 /**
@@ -39,12 +42,18 @@ public class GlobalBean {
     
     private Map uygulamaMap;
     
-    private List<SelectItem> statuList;
-    
+    private List<SelectItem> countyPhoneCodeList;
+    private RecruitmentDbService dbService;
    
     @PostConstruct
     public void init() {
 
+    }
+    
+    public void isUserAuthorized() throws Exception{
+        if(!JsfHelper.isUserThisAction()){
+            JsfHelper.getExternalContext().redirect("/" + Globals.APP_NAME + "/error/yetki.xhtml");
+        }
     }
     
     public void sessionTimeOutUpdate(){
@@ -53,9 +62,25 @@ public class GlobalBean {
             System.out.println("SESSION M::" + JsfHelper.getHttpSession().getMaxInactiveInterval());
             System.out.println("SESSION L::" + JsfHelper.getHttpSession().getLastAccessedTime());            
         }
-
-        
     }
+
+    public List<SelectItem> getCountyPhoneCodeList() {
+        final String key = "countyPhoneCodeList";
+        countyPhoneCodeList = GlobalBeanData.getCacheItems(key);
+        dbService = new RecruitmentDbService();
+        if (CommonUtil.isEmpty(countyPhoneCodeList)) {
+            List<PhoneCountryCode> records = dbService.findAll(PhoneCountryCode.class);
+            countyPhoneCodeList = CommonUtil.convert(records, new CountryPhoneCodeToSelectItemConverter());
+            GlobalBeanData.setCacheItems(key, countyPhoneCodeList);
+        }
+        return countyPhoneCodeList;
+    }
+
+    public void setCountyPhoneCodeList(List<SelectItem> countyPhoneCodeList) {
+        this.countyPhoneCodeList = countyPhoneCodeList;
+    }
+    
+    
 
     public List<SelectItem> getEvetHayirList() {
         

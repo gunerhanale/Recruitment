@@ -5,12 +5,15 @@
  */
 package recruitment.beans;
 
+import common.constant.Globals;
 import common.util.CommonUtil;
 import common.util.JsfHelper;
 import common.util.Messages;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import recruitment.entitites.AppUser;
 import recruitment.services.RecruitmentDbService;
 
@@ -34,13 +37,14 @@ public class SignUpBean {
         record = new AppUser();
     }
     
-    public void saveRecord () throws Exception{
+    public void saveRecord () throws Exception{ 
         dbService = new RecruitmentDbService();
         record.setUserId(dbService.getSequenceBigIntValue("seq_user_id"));
         record.setLastLoginDate(CommonUtil.getCurrentTime());
         dbService.edit(record);
         init();
         JsfHelper.addSuccessMessage(Messages.getSaveSuccessMsg());
+        JsfHelper.getExternalContext().redirect("/" + Globals.APP_NAME + "/index.xhtml?faces-redirect=true");
     }
 
     public AppUser getRecord() {

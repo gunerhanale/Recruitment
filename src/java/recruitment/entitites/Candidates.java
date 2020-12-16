@@ -7,6 +7,7 @@ package recruitment.entitites;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Candidates.findByEmailAddres", query = "SELECT c FROM Candidates c WHERE c.emailAddres = :emailAddres"),
     @NamedQuery(name = "Candidates.findByMobilePhoneNumber", query = "SELECT c FROM Candidates c WHERE c.mobilePhoneNumber = :mobilePhoneNumber"),
     @NamedQuery(name = "Candidates.findByMobileCountryCode", query = "SELECT c FROM Candidates c WHERE c.mobileCountryCode = :mobileCountryCode"),
-    @NamedQuery(name = "Candidates.findByRecordTime", query = "SELECT c FROM Candidates c WHERE c.recordTime = :recordTime")})
+    @NamedQuery(name = "Candidates.findByRecordTime", query = "SELECT c FROM Candidates c WHERE c.recordTime = :recordTime"),
+    @NamedQuery(name = "Candidates.findByExplanation", query = "SELECT c FROM Candidates c WHERE c.explanation = :explanation")})
 public class Candidates implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,7 +44,7 @@ public class Candidates implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private BigDecimal id;
+    private BigInteger id;
     @Column(name = "FULL_NAME")
     private String fullName;
     @Column(name = "EMAIL_ADDRES")
@@ -57,19 +59,21 @@ public class Candidates implements Serializable {
     @Column(name = "RECORD_TIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date recordTime;
+    @Column(name = "EXPLANATION")
+    private String explanation;
 
     public Candidates() {
     }
 
-    public Candidates(BigDecimal id) {
+    public Candidates(BigInteger id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
@@ -119,6 +123,14 @@ public class Candidates implements Serializable {
 
     public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 
     @Override

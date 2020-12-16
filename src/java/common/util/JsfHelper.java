@@ -10,8 +10,21 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import recruitment.entitites.AppUser;
 
 public class JsfHelper {
+    
+    public static AppUser getUser() {
+        return (AppUser) getHttpSession().getAttribute("user");
+    }
+    
+    public static boolean isUserThisAction() {
+        AppUser user = getUser();
+        if (user == null) {
+            return false;
+        }
+        return true;
+    }
 
     public static HttpSession getHttpSession() {
         return getHttpSession(false);
