@@ -3,7 +3,6 @@ package common.bean;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -36,11 +35,8 @@ public class GlobalBean {
     private Locale locale = Globals.LOCALE;
     private String timeZone = Globals.TIME_ZONE;
 
-    private List<SelectItem> uygulamaList;
     private List<SelectItem> evetHayirList;
     private List<SelectItem> printOptionList;
-    
-    private Map uygulamaMap;
     
     private List<SelectItem> countyPhoneCodeList;
     private RecruitmentDbService dbService;
@@ -144,14 +140,6 @@ public class GlobalBean {
 
     public void setTimePattern(String timePattern) {
         this.timePattern = timePattern;
-    }
-
-    public List<SelectItem> getUygulamaList() {
-        return uygulamaList;
-    }
-
-    public void setUygulamaList(List<SelectItem> uygulamaList) {
-        this.uygulamaList = uygulamaList;
     }
 
     public String getLang() {

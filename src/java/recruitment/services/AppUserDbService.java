@@ -40,7 +40,7 @@ public class AppUserDbService {
                     getSingleResult();
 
         } catch (Exception e) {
-
+            
         }
         return record;
     }
