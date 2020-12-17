@@ -1,9 +1,6 @@
 package common.util;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
+
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
