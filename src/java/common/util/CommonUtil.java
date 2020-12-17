@@ -163,33 +163,37 @@ public class CommonUtil {
     }
 
     public static long dayDiff(Date start, Date end) {
-        return TimeUnit.DAYS.convert(end.getTime()-start.getTime(), TimeUnit.MILLISECONDS);
+        return TimeUnit.DAYS.convert(end.getTime() - start.getTime(), TimeUnit.MILLISECONDS);
     }
+
     public static int monthDiff(Date start, Date end) {
-        
+
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(start);
-        
+
         Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(end); 
-        
+        cal2.setTime(end);
+
         int yearDiff = cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR);
-        int monthDiff = yearDiff*12 + cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
-        
+        int monthDiff = yearDiff * 12 + cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
+
         return monthDiff;
-    }    
+    }
+
     public static Date addHourToDate(Date date, int hour) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.HOUR, hour);
         return cal.getTime();
     }
+
     public static Date addMonthToDate(Date date, int month) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, month);
         return cal.getTime();
     }
+
     public static Date addMinuteToDate(Date date, int minute) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -270,7 +274,7 @@ public class CommonUtil {
 
     public static Timestamp getCurrentTime() {
         Timestamp ts = new Timestamp(new Date().getTime());
-       
+
         return ts;
     }
 
@@ -474,6 +478,7 @@ public class CommonUtil {
             return 0;
         }
     }
+
     public static BigInteger toBigInteger(String val) {
         if (isEmpty(val)) {
             return BigInteger.ZERO;
@@ -484,6 +489,7 @@ public class CommonUtil {
             return BigInteger.ZERO;
         }
     }
+
     public static long toLong(String val) {
         if (isEmpty(val)) {
             return 0;
@@ -573,14 +579,11 @@ public class CommonUtil {
 
     }
 
-
-
     public static void main(String[] str) {
         Calendar cal = Calendar.getInstance();
         cal.set(2018, 2, 1);
-        System.out.println("diff:::" + monthDiff(new Date(),cal.getTime()));
-        
-        
-    }  
+        System.out.println("diff:::" + monthDiff(new Date(), cal.getTime()));
+
+    }
 
 }
