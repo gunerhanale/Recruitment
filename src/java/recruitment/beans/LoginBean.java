@@ -10,14 +10,9 @@ import javax.faces.bean.ViewScoped;
 import recruitment.entitites.AppUser;
 import recruitment.services.AppUserDbService;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author ebubekir
+ * @author ebubekir.gunerhanal
  */
 @ManagedBean(name = "loginBean")
 @ViewScoped
@@ -43,7 +38,7 @@ public class LoginBean {
             JsfHelper.addErrorMessage(Messages.getString("User not found, please before sign up!"));
             return;
         }
-        
+
         if (!record.getPassword().equals(findedUser.getPassword())) {
             if (!Globals.DEBUG) {
                 JsfHelper.addErrorMessage(Messages.getString("password is wrong"));
@@ -53,8 +48,8 @@ public class LoginBean {
         JsfHelper.getHttpSession().setAttribute("user", findedUser);
         JsfHelper.getExternalContext().redirect("/" + Globals.APP_NAME + "/public/home.xhtml?faces-redirect=true");
     }
-    
-    public void signUp() throws IOException{
+
+    public void signUp() throws IOException {
         JsfHelper.getExternalContext().redirect("/" + Globals.APP_NAME + "/public/signUp.xhtml");
     }
 

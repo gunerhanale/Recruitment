@@ -10,34 +10,32 @@ import common.util.CommonUtil;
 import common.util.JsfHelper;
 import common.util.Messages;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import recruitment.entitites.AppUser;
 import recruitment.services.RecruitmentDbService;
 
 /**
  *
- * @author ebubekir
+ * @author ebubekir.gunerhanal
  */
 @ManagedBean(name = "signUpBean")
 @ViewScoped
 public class SignUpBean {
-  
+
     private RecruitmentDbService dbService;
     private AppUser record;
-    
+
     @PostConstruct
-    private void init(){
+    private void init() {
         initRecord();
     }
-    
-    private void initRecord(){
+
+    private void initRecord() {
         record = new AppUser();
     }
-    
-    public void saveRecord () throws Exception{ 
+
+    public void saveRecord() throws Exception {
         dbService = new RecruitmentDbService();
         record.setUserId(dbService.getSequenceBigIntValue("seq_user_id"));
         record.setLastLoginDate(CommonUtil.getCurrentTime());
@@ -50,8 +48,9 @@ public class SignUpBean {
     public AppUser getRecord() {
         return record;
     }
+
     public void setRecord(AppUser record) {
         this.record = record;
     }
-    
+
 }

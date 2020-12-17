@@ -20,7 +20,7 @@ import recruitment.services.RecruitmentDbService;
 
 /**
  *
- * @author bekir
+ * @author ebubekir.gunerhanal
  */
 @Named
 @ManagedBean(name = "globalBean")

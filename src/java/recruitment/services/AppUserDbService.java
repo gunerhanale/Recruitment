@@ -16,11 +16,10 @@ import recruitment.entitites.AppUser;
 
 /**
  *
- * @author ebubekir
+ * @author ebubekir.gunerhanal
  */
-
 public class AppUserDbService {
-    
+
     private final EntityManagerFactory emf;
     private final EntityManager em;
 
@@ -28,7 +27,7 @@ public class AppUserDbService {
         this.emf = Persistence.createEntityManagerFactory("RecruitmentPU");
         this.em = emf.createEntityManager();
     }
-    
+
     public AppUser fetchUSer(BigInteger id) {
         return em.find(AppUser.class, id);
     }
@@ -58,11 +57,11 @@ public class AppUserDbService {
     }
 
     public <T> T find(Class<T> c, Object id) {
-    	try{
+        try {
             return em.find(c, id);
-    	}catch(Throwable e){
-    		return null;
-    	}
+        } catch (Throwable e) {
+            return null;
+        }
     }
 
     public <T> void remove(T entity) {
@@ -71,15 +70,16 @@ public class AppUserDbService {
         em.getTransaction().commit();
         em.close();
     }
-  
+
     public BigDecimal getSequenceValue(String sequenceName) {
-        String sql = "select "+sequenceName+".nextval from dual";
+        String sql = "select " + sequenceName + ".nextval from dual";
         BigDecimal id = (BigDecimal) em.createNativeQuery(sql).getSingleResult();
         return id;
     }
+
     public BigInteger getSequenceBigIntValue(String sequenceName) {
         BigDecimal id = getSequenceValue(sequenceName);
         return id.toBigInteger();
     }
-    
+
 }

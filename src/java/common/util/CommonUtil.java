@@ -39,7 +39,7 @@ import common.constant.Globals;
 
 /**
  *
- * @author SerkanEren
+ * @author ebubekir.gunerhanal
  */
 public class CommonUtil {
 
